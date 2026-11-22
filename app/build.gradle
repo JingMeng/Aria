@@ -1,10 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-  compileSdkVersion rootProject.ext.compileSdkVersion
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_11
+    targetCompatibility JavaVersion.VERSION_11
+  }
+    namespace 'com.arialyy.simple'
+    compileSdkVersion rootProject.ext.compileSdkVersion
   buildToolsVersion rootProject.ext.buildToolsVersion
 
   defaultConfig {
@@ -32,7 +36,7 @@ android {
   buildTypes {
     debug {
       debuggable true
-      minifyEnabled false //混淆
+      minifyEnabled false //???
     }
     release {
       zipAlignEnabled true
@@ -85,12 +89,11 @@ dependencies {
 
 //    implementation 'com.arialyy.aria:core:3.8.12'
 //    kapt 'com.arialyy.aria:compiler:3.8.12'
-//    implementation 'com.arialyy.aria:ftpComponent:3.8.12' // 如果需要使用ftp，请增加该组件
-//    implementation 'com.arialyy.aria:sftpComponent:3.8.12' // 如果需要使用ftp，请增加该组件
-//    implementation 'com.arialyy.aria:m3u8Component:3.8.12' // 如果需要使用m3u8下载功能，请增加该组件
-
+//    implementation 'com.arialyy.aria:ftpComponent:3.8.12' // ??????????tp???????????//    implementation 'com.arialyy.aria:sftpComponent:3.8.12' // ??????????tp???????????//    implementation 'com.arialyy.aria:m3u8Component:3.8.12' // ??????????3u8?????????????????
   debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 }
 repositories {
   mavenCentral()
 }
+
+

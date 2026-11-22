@@ -1,4 +1,4 @@
-///*
+﻿///*
 // * Copyright (C) 2016 AriaLyy(https://github.com/AriaLyy/Aria)
 // *
 // * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,7 +19,7 @@
 //import android.app.NotificationManager;
 //import android.content.Context;
 //import android.os.Environment;
-//import android.support.v4.app.NotificationCompat;
+//import androidx.core.app.NotificationCompat;
 //import com.arialyy.annotations.Download;
 //import com.arialyy.aria.core.Aria;
 //import com.arialyy.aria.core.task.DownloadTask;
@@ -47,7 +47,7 @@
 //    mManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
 //    mBuilder = new NotificationCompat.Builder(mContext);
 //    mBuilder.setContentTitle("Aria Download Test")
-//        .setContentText("进度条")
+//        .setContentText("杩涘害鏉?)
 //        .setProgress(100, 0, false)
 //        .setSmallIcon(R.mipmap.ic_launcher);
 //    mManager.notify(mNotifiyId, mBuilder.build());
@@ -57,7 +57,7 @@
 //  public void create() {
 //    Aria.download(this)
 //        .load(DOWNLOAD_URL)
-//        .setFilePath(Environment.getExternalStorageDirectory() + "/Download/消灭星星.apk")
+//        .setFilePath(Environment.getExternalStorageDirectory() + "/Download/娑堢伃鏄熸槦.apk")
 //        .create();
 //  }
 //
@@ -97,3 +97,4 @@
 //  @Download.onTaskCancel public void onTaskCancel(DownloadTask task) {
 //  }
 //}
+

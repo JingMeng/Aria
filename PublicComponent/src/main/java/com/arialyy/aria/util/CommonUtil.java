@@ -58,14 +58,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by lyy on 2016/1/22. 通用工具
+ * Created by lyy on 2016/1/22. 閫氱敤宸ュ叿
  */
 public class CommonUtil {
   private static final String TAG = "CommonUtil";
   public static final String SERVER_CHARSET = "ISO-8859-1";
   private static long lastClickTime;
   /**
-   * android、androidx、support的fragment、dialogFragment类名
+   * android銆乤ndroidx銆乻upport鐨刦ragment銆乨ialogFragment绫诲悕
    */
   private static List<String> mFragmentClassName = new ArrayList<>();
   private static List<String> mDialogFragmentClassName = new ArrayList<>();
@@ -75,7 +75,7 @@ public class CommonUtil {
     mFragmentClassName.add("androidx.fragment.app.DialogFragment");
     mFragmentClassName.add("android.app.Fragment");
     mFragmentClassName.add("android.app.DialogFragment");
-    mFragmentClassName.add("android.support.v4.app.Fragment");
+    mFragmentClassName.add("androidx.fragment.app.Fragment");
     mFragmentClassName.add("android.support.v4.app.DialogFragment");
 
     mDialogFragmentClassName.add("androidx.fragment.app.DialogFragment");
@@ -84,9 +84,9 @@ public class CommonUtil {
   }
 
   /**
-   * 获取fragment的activityz
+   * 鑾峰彇fragment鐨刟ctivityz
    *
-   * @return 获取失败，返回null
+   * @return 鑾峰彇澶辫触锛岃繑鍥瀗ull
    */
   public static Activity getFragmentActivity(Object obj) {
     try {
@@ -103,9 +103,9 @@ public class CommonUtil {
   }
 
   /**
-   * 判断注解对象是否是fragment
+   * 鍒ゆ柇娉ㄨВ瀵硅薄鏄惁鏄痜ragment
    *
-   * @return true 对象是fragment
+   * @return true 瀵硅薄鏄痜ragment
    */
   public static boolean isFragment(Class subClazz) {
     Class parentClass = subClazz.getSuperclass();
@@ -122,9 +122,9 @@ public class CommonUtil {
   }
 
   /**
-   * 判断对象是否是DialogFragment
+   * 鍒ゆ柇瀵硅薄鏄惁鏄疍ialogFragment
    *
-   * @return true 对象是DialogFragment
+   * @return true 瀵硅薄鏄疍ialogFragment
    */
   public static boolean isDialogFragment(Class subClazz) {
     Class parentClass = subClazz.getSuperclass();
@@ -150,7 +150,7 @@ public class CommonUtil {
   public static String getTargetName(Object obj) {
     String targetName;
     if (isLocalOrAnonymousClass(obj.getClass())) {
-      Log.w(TAG, String.format("%s 是匿名内部类或局部类，将使用其主类的对象", obj.getClass().getName()));
+      Log.w(TAG, String.format("%s 鏄尶鍚嶅唴閮ㄧ被鎴栧眬閮ㄧ被锛屽皢浣跨敤鍏朵富绫荤殑瀵硅薄", obj.getClass().getName()));
       String clsName = obj.getClass().getName();
       int $Index = clsName.lastIndexOf("$");
       targetName = clsName.substring(0, $Index);
@@ -161,32 +161,31 @@ public class CommonUtil {
   }
 
   /**
-   * 获取线程名称，命名规则：md5(任务地址 + 线程id)
+   * 鑾峰彇绾跨▼鍚嶇О锛屽懡鍚嶈鍒欙細md5(浠诲姟鍦板潃 + 绾跨▼id)
    *
-   * @param url 任务地址
-   * @param threadId 线程id
+   * @param url 浠诲姟鍦板潃
+   * @param threadId 绾跨▼id
    */
   public static String getThreadName(String url, int threadId) {
     return getStrMd5(url.concat(String.valueOf(threadId)));
   }
 
   /**
-   * 检查sql的expression是否合法
+   * 妫€鏌ql鐨別xpression鏄惁鍚堟硶
    *
-   * @return false 不合法
-   */
+   * @return false 涓嶅悎娉?   */
   public static boolean checkSqlExpression(String... expression) {
     if (expression.length == 0) {
-      ALog.e(TAG, "sql语句表达式不能为null");
+      ALog.e(TAG, "sql璇彞琛ㄨ揪寮忎笉鑳戒负null");
       return false;
     }
     //if (expression.length == 1) {
-    //  ALog.e(TAG, String.format("表达式需要写入参数，参数信息：%s", Arrays.toString(expression)));
+    //  ALog.e(TAG, String.format("琛ㄨ揪寮忛渶瑕佸啓鍏ュ弬鏁帮紝鍙傛暟淇℃伅锛?s", Arrays.toString(expression)));
     //  return false;
     //}
     String where = expression[0];
     //if (!where.contains("?")) {
-    //  ALog.e(TAG, String.format("请在where语句的'='后编写?，参数信息：%s", Arrays.toString(expression)));
+    //  ALog.e(TAG, String.format("璇峰湪where璇彞鐨?='鍚庣紪鍐?锛屽弬鏁颁俊鎭細%s", Arrays.toString(expression)));
     //  return false;
     //}
     Pattern pattern = Pattern.compile("\\?");
@@ -196,26 +195,24 @@ public class CommonUtil {
       count++;
     }
     if (count < expression.length - 1) {
-      ALog.e(TAG, String.format("条件语句的?个数不能小于参数个数，参数信息：%s", Arrays.toString(expression)));
+      ALog.e(TAG, String.format("鏉′欢璇彞鐨?涓暟涓嶈兘灏忎簬鍙傛暟涓暟锛屽弬鏁颁俊鎭細%s", Arrays.toString(expression)));
       return false;
     }
     if (count > expression.length - 1) {
-      ALog.e(TAG, String.format("条件语句的?个数不能大于参数个数， 参数信息：%s", Arrays.toString(expression)));
+      ALog.e(TAG, String.format("鏉′欢璇彞鐨?涓暟涓嶈兘澶т簬鍙傛暟涓暟锛?鍙傛暟淇℃伅锛?s", Arrays.toString(expression)));
       return false;
     }
     return true;
   }
 
   /**
-   * 是否是快速点击，500ms内快速点击无效
-   *
-   * @return true 快速点击
-   */
+   * 鏄惁鏄揩閫熺偣鍑伙紝500ms鍐呭揩閫熺偣鍑绘棤鏁?   *
+   * @return true 蹇€熺偣鍑?   */
   public static boolean isFastDoubleClick() {
     long time = System.currentTimeMillis();
     long timeD = time - lastClickTime;
     if (0 < timeD && timeD < 500) {
-      ALog.i(TAG, "操作太频繁了，缓一下吧～");
+      ALog.i(TAG, "操作太频繁，请稍后再试");
       return true;
     }
     lastClickTime = time;
@@ -223,34 +220,28 @@ public class CommonUtil {
   }
 
   /**
-   * 将字符串转换为Ftp服务器默认的ISO-8859-1编码
+   * 灏嗗瓧绗︿覆杞崲涓篎tp鏈嶅姟鍣ㄩ粯璁ょ殑ISO-8859-1缂栫爜
    *
-   * @param charSet 原字符串编码s
-   * @param str 需要转换的字符串
-   * @return 转换后的字符串
-   */
+   * @param charSet 鍘熷瓧绗︿覆缂栫爜s
+   * @param str 闇€瑕佽浆鎹㈢殑瀛楃涓?   * @return 杞崲鍚庣殑瀛楃涓?   */
   public static String convertFtpChar(String charSet, String str)
       throws UnsupportedEncodingException {
     return new String(str.getBytes(charSet), SERVER_CHARSET);
   }
 
   /**
-   * 将字符串转换为Ftp服务器默认的ISO-8859-1编码
+   * 灏嗗瓧绗︿覆杞崲涓篎tp鏈嶅姟鍣ㄩ粯璁ょ殑ISO-8859-1缂栫爜
    *
-   * @param charSet 字符串编码
-   * @param str 需要转换的字符串
-   * @return 转换后的字符串
-   */
+   * @param charSet 瀛楃涓茬紪鐮?   * @param str 闇€瑕佽浆鎹㈢殑瀛楃涓?   * @return 杞崲鍚庣殑瀛楃涓?   */
   public static String convertSFtpChar(String charSet, String str)
       throws UnsupportedEncodingException {
     return new String(str.getBytes(), charSet);
   }
 
   /**
-   * 获取某包下所有类
+   * 鑾峰彇鏌愬寘涓嬫墍鏈夌被
    *
-   * @param className 过滤的类名
-   * @return 类的完整名称
+   * @param className 杩囨护鐨勭被鍚?   * @return 绫荤殑瀹屾暣鍚嶇О
    */
   public static List<String> getPkgClassNames(Context context, String className) {
     List<String> classNameList = new ArrayList<>();
@@ -273,11 +264,10 @@ public class CommonUtil {
   }
 
   /**
-   * 获取指定包名下的所有类
+   * 鑾峰彇鎸囧畾鍖呭悕涓嬬殑鎵€鏈夌被
    *
-   * @param path dex路径
-   * @param filterClass 需要过滤的类
-   */
+   * @param path dex璺緞
+   * @param filterClass 闇€瑕佽繃婊ょ殑绫?   */
   public static List<String> getPkgClassName(String path, String filterClass) {
     List<String> list = new ArrayList<>();
     try {
@@ -287,8 +277,8 @@ public class CommonUtil {
         return list;
       }
 
-      DexFile df = new DexFile(path);//通过DexFile查找当前的APK中可执行文件
-      Enumeration<String> enumeration = df.entries();//获取df中的元素  这里包含了所有可执行的类名 该类名包含了包名+类名的方式
+      DexFile df = new DexFile(path);//閫氳繃DexFile鏌ユ壘褰撳墠鐨凙PK涓彲鎵ц鏂囦欢
+      Enumeration<String> enumeration = df.entries();
       while (enumeration.hasMoreElements()) {
         String _className = enumeration.nextElement();
         if (!_className.contains(filterClass)) {
@@ -306,13 +296,13 @@ public class CommonUtil {
   }
 
   /**
-   * 拦截window.location.replace数据
+   * 鎷︽埅window.location.replace鏁版嵁
    *
-   * @return 重定向url
+   * @return 閲嶅畾鍚憉rl
    */
   public static String getWindowReplaceUrl(String text) {
     if (TextUtils.isEmpty(text)) {
-      ALog.e(TAG, "拦截数据为null");
+      ALog.e(TAG, "鎷︽埅鏁版嵁涓簄ull");
       return null;
     }
     String reg = Regular.REG_WINLOD_REPLACE;
@@ -327,18 +317,15 @@ public class CommonUtil {
   }
 
   /**
-   * 获取sdcard app的缓存目录
-   *
+   * 鑾峰彇sdcard app鐨勭紦瀛樼洰褰?   *
    * @return "/mnt/sdcard/Android/data/{package_name}/files/"
    */
   public static String getAppPath(Context context) {
-    //判断是否存在sd卡
     boolean sdExist = android.os.Environment.MEDIA_MOUNTED.equals(
         android.os.Environment.getExternalStorageState());
     if (!sdExist) {
       return null;
     } else {
-      //获取sd卡路径
       File file = context.getExternalFilesDir(null);
       String dir;
       if (file != null) {
@@ -354,15 +341,15 @@ public class CommonUtil {
   }
 
   /**
-   * 获取map泛型类型
+   * 鑾峰彇map娉涘瀷绫诲瀷
    *
-   * @param map list类型字段
-   * @return 泛型类型
+   * @param map list绫诲瀷瀛楁
+   * @return 娉涘瀷绫诲瀷
    */
   public static Class[] getMapParamType(Field map) {
     Class type = map.getType();
     if (!type.isAssignableFrom(Map.class)) {
-      ALog.d(TAG, "字段类型不是Map");
+      ALog.d(TAG, "瀛楁绫诲瀷涓嶆槸Map");
       return null;
     }
 
@@ -385,37 +372,36 @@ public class CommonUtil {
   }
 
   /**
-   * 获取list泛型类型
+   * 鑾峰彇list娉涘瀷绫诲瀷
    *
-   * @param list list类型字段
-   * @return 泛型类型
+   * @param list list绫诲瀷瀛楁
+   * @return 娉涘瀷绫诲瀷
    */
 
   public static Class getListParamType(Field list) {
     Class type = list.getType();
     if (!type.isAssignableFrom(List.class)) {
-      ALog.d(TAG, "字段类型不是List");
+      ALog.d(TAG, "瀛楁绫诲瀷涓嶆槸List");
       return null;
     }
 
-    Type fc = list.getGenericType(); // 关键的地方，如果是List类型，得到其Generic的类型
-
+    Type fc = list.getGenericType(); // 鍏抽敭鐨勫湴鏂癸紝濡傛灉鏄疞ist绫诲瀷锛屽緱鍒板叾Generic鐨勭被鍨?
     if (fc == null) {
       ALog.d(TAG, "该字段没有泛型参数");
       return null;
     }
 
-    if (fc instanceof ParameterizedType) { //如果是泛型参数的类型
+    if (fc instanceof ParameterizedType) { //濡傛灉鏄硾鍨嬪弬鏁扮殑绫诲瀷
       ParameterizedType pt = (ParameterizedType) fc;
-      return (Class) pt.getActualTypeArguments()[0]; //得到泛型里的class类型对象。
+      return (Class) pt.getActualTypeArguments()[0];
     }
     return null;
   }
 
   /**
-   * 分割获取url，协议，ip/域名，端口，内容
+   * 鍒嗗壊鑾峰彇url锛屽崗璁紝ip/鍩熷悕锛岀鍙ｏ紝鍐呭
    *
-   * @param url 输入的url{@code String url = "ftp://z:z@dygod18.com:21211/[电影天堂www.dy2018.com]猩球崛起3：终极之战BD国英双语中英双字.mkv";}
+   * @param url 杈撳叆鐨剈rl{@code String url = "ftp://z:z@dygod18.com:21211/[鐢靛奖澶╁爞www.dy2018.com]鐚╃悆宕涜捣3锛氱粓鏋佷箣鎴楤D鍥借嫳鍙岃涓嫳鍙屽瓧.mkv";}
    */
   public static FtpUrlEntity getFtpUrlInfo(String url) {
     Uri uri = Uri.parse(url);
@@ -444,18 +430,18 @@ public class CommonUtil {
   }
 
   /**
-   * 转换Url
+   * 杞崲Url
    *
-   * @param url 原地址
-   * @return 转换后的地址
+   * @param url 鍘熷湴鍧€
+   * @return 杞崲鍚庣殑鍦板潃
    */
   public static String convertUrl(String url) {
     Uri uri = Uri.parse(url);
     url = uri.toString();
     if (hasDoubleCharacter(url)) {
-      //预先处理空格，URLEncoder只会把空格转换为+
+      //棰勫厛澶勭悊绌烘牸锛孶RLEncoder鍙細鎶婄┖鏍艰浆鎹负+
       url = url.replaceAll(" ", "%20");
-      //匹配双字节字符(包括汉字在内)
+      //鍖归厤鍙屽瓧鑺傚瓧绗?鍖呮嫭姹夊瓧鍦ㄥ唴)
       String regex = Regular.REG_DOUBLE_CHAR_AND_SPACE;
       Pattern p = Pattern.compile(regex);
       Matcher m = p.matcher(url);
@@ -475,10 +461,8 @@ public class CommonUtil {
   }
 
   /**
-   * 判断是否有双字节字符(包括汉字在内) 和空格、制表符、回车
-   *
-   * @param chineseStr 需要进行判断的字符串
-   * @return {@code true}有双字节字符，{@code false} 无双字节字符
+   * 鍒ゆ柇鏄惁鏈夊弻瀛楄妭瀛楃(鍖呮嫭姹夊瓧鍦ㄥ唴) 鍜岀┖鏍笺€佸埗琛ㄧ銆佸洖杞?   *
+   * @param chineseStr 闇€瑕佽繘琛屽垽鏂殑瀛楃涓?   * @return {@code true}鏈夊弻瀛楄妭瀛楃锛寋@code false} 鏃犲弻瀛楄妭瀛楃
    */
   public static boolean hasDoubleCharacter(String chineseStr) {
     char[] charArray = chineseStr.toCharArray();
@@ -492,28 +476,21 @@ public class CommonUtil {
   }
 
   /**
-   * base64 解密字符串
-   *
-   * @param str 被加密的字符串
-   * @return 解密后的字符串
-   */
+   * base64 瑙ｅ瘑瀛楃涓?   *
+   * @param str 琚姞瀵嗙殑瀛楃涓?   * @return 瑙ｅ瘑鍚庣殑瀛楃涓?   */
   public static String decryptBASE64(String str) {
     return new String(Base64.decode(str.getBytes(), Base64.DEFAULT));
   }
 
   /**
-   * base64 加密字符串
-   *
-   * @param str 需要加密的字符串
-   * @return 加密后的字符串
-   */
+   * base64 鍔犲瘑瀛楃涓?   *
+   * @param str 闇€瑕佸姞瀵嗙殑瀛楃涓?   * @return 鍔犲瘑鍚庣殑瀛楃涓?   */
   public static String encryptBASE64(String str) {
     return Base64.encodeToString(str.getBytes(), Base64.DEFAULT);
   }
 
   /**
-   * 字符串编码转换
-   */
+   * 瀛楃涓茬紪鐮佽浆鎹?   */
   public static String strCharSetConvert(String oldStr, String charSet) {
     try {
       return new String(oldStr.getBytes(), charSet);
@@ -524,9 +501,9 @@ public class CommonUtil {
   }
 
   /**
-   * 根据下载任务组的url创建key
+   * 鏍规嵁涓嬭浇浠诲姟缁勭殑url鍒涘缓key
    *
-   * @return urls 为 null 或者 size为0，返回""
+   * @return urls 涓?null 鎴栬€?size涓?锛岃繑鍥?"
    */
   public static String getMd5Code(List<String> urls) {
     if (urls == null || urls.size() < 1) return "";
@@ -546,9 +523,9 @@ public class CommonUtil {
   }
 
   /**
-   * 获取字符串的md5
+   * 鑾峰彇瀛楃涓茬殑md5
    *
-   * @return 字符串为空或获取md5失败，则返回""
+   * @return 瀛楃涓蹭负绌烘垨鑾峰彇md5澶辫触锛屽垯杩斿洖""
    */
   public static String getStrMd5(String str) {
     if (TextUtils.isEmpty(str)) return "";
@@ -563,8 +540,7 @@ public class CommonUtil {
   }
 
   /**
-   * 获取CPU核心数
-   */
+   * 鑾峰彇CPU鏍稿績鏁?   */
   public static int getCoresNum() {
     //Private Class to display only CPU devices in the directory listing
     class CpuFilter implements FileFilter {
@@ -592,8 +568,7 @@ public class CommonUtil {
   }
 
   /**
-   * 校验文件MD5码
-   */
+   * 鏍￠獙鏂囦欢MD5鐮?   */
   public static boolean checkMD5(String md5, File updateFile) {
     if (TextUtils.isEmpty(md5) || updateFile == null) {
       ALog.e(TAG, "MD5 string empty or updateFile null");
@@ -609,8 +584,7 @@ public class CommonUtil {
   }
 
   /**
-   * 校验文件MD5码
-   */
+   * 鏍￠獙鏂囦欢MD5鐮?   */
   public static boolean checkMD5(String md5, InputStream is) {
     if (TextUtils.isEmpty(md5) || is == null) {
       ALog.e(TAG, "MD5 string empty or updateFile null");
@@ -626,8 +600,7 @@ public class CommonUtil {
   }
 
   /**
-   * 获取文件MD5码
-   */
+   * 鑾峰彇鏂囦欢MD5鐮?   */
   public static String getFileMD5(File updateFile) {
     InputStream is;
     try {
@@ -641,8 +614,7 @@ public class CommonUtil {
   }
 
   /**
-   * 获取文件MD5码
-   */
+   * 鑾峰彇鏂囦欢MD5鐮?   */
   public static String getFileMD5(InputStream is) {
     MessageDigest digest;
     try {
@@ -676,7 +648,7 @@ public class CommonUtil {
   }
 
   /**
-   * 创建隐性的Intent
+   * 鍒涘缓闅愭€х殑Intent
    */
   public static Intent createIntent(String packageName, String action) {
     Uri.Builder builder = new Uri.Builder();
@@ -688,12 +660,9 @@ public class CommonUtil {
   }
 
   /**
-   * 存储字符串到配置文件
+   * 瀛樺偍瀛楃涓插埌閰嶇疆鏂囦欢
    *
-   * @param preName 配置文件名
-   * @param key 存储的键值
-   * @param value 需要存储的字符串
-   * @return 成功标志
+   * @param preName 閰嶇疆鏂囦欢鍚?   * @param key 瀛樺偍鐨勯敭鍊?   * @param value 闇€瑕佸瓨鍌ㄧ殑瀛楃涓?   * @return 鎴愬姛鏍囧織
    */
   public static Boolean putString(String preName, Context context, String key, String value) {
     SharedPreferences pre = context.getSharedPreferences(preName, Context.MODE_PRIVATE);
@@ -703,11 +672,9 @@ public class CommonUtil {
   }
 
   /**
-   * 从配置文件读取字符串
+   * 浠庨厤缃枃浠惰鍙栧瓧绗︿覆
    *
-   * @param preName 配置文件名
-   * @param key 字符串键值
-   * @return 键值对应的字符串, 默认返回""
+   * @param preName 閰嶇疆鏂囦欢鍚?   * @param key 瀛楃涓查敭鍊?   * @return 閿€煎搴旂殑瀛楃涓? 榛樿杩斿洖""
    */
   public static String getString(String preName, Context context, String key) {
     SharedPreferences pre = context.getSharedPreferences(preName, Context.MODE_PRIVATE);
@@ -715,8 +682,7 @@ public class CommonUtil {
   }
 
   /**
-   * 获取所有字段，包括父类的字段
-   */
+   * 鑾峰彇鎵€鏈夊瓧娈碉紝鍖呮嫭鐖剁被鐨勫瓧娈?   */
   public static List<Field> getAllFields(Class clazz) {
     List<Field> fields = new ArrayList<>();
     Class personClazz = clazz.getSuperclass();
@@ -742,8 +708,7 @@ public class CommonUtil {
   }
 
   /**
-   * 获取当前类里面的所在字段
-   */
+   * 鑾峰彇褰撳墠绫婚噷闈㈢殑鎵€鍦ㄥ瓧娈?   */
   public static Field[] getFields(Class clazz) {
     Field[] fields;
     fields = clazz.getDeclaredFields();
@@ -757,8 +722,7 @@ public class CommonUtil {
   }
 
   /**
-   * 获取类里面的指定对象，如果该类没有则从父类查询
-   */
+   * 鑾峰彇绫婚噷闈㈢殑鎸囧畾瀵硅薄锛屽鏋滆绫绘病鏈夊垯浠庣埗绫绘煡璇?   */
   public static Field getField(Class clazz, String name) {
     Field field = null;
     try {
@@ -781,8 +745,7 @@ public class CommonUtil {
   }
 
   /**
-   * 获取类里面的指定对象，如果该类没有则从父类查询
-   */
+   * 鑾峰彇绫婚噷闈㈢殑鎸囧畾瀵硅薄锛屽鏋滆绫绘病鏈夊垯浠庣埗绫绘煡璇?   */
   public static Method getMethod(Class clazz, String methodName, Class<?>... params){
     Method method = null;
     try {
@@ -807,7 +770,7 @@ public class CommonUtil {
   }
 
   /**
-   * 字符串转hashcode
+   * 瀛楃涓茶浆hashcode
    */
   public static int keyToHashCode(String str) {
     int total = 0;
@@ -821,11 +784,9 @@ public class CommonUtil {
   }
 
   /**
-   * 将key转换为16进制码
-   *
-   * @param key 缓存的key
-   * @return 转换后的key的值, 系统便是通过该key来读写缓存
-   */
+   * 灏唊ey杞崲涓?6杩涘埗鐮?   *
+   * @param key 缂撳瓨鐨刱ey
+   * @return 杞崲鍚庣殑key鐨勫€? 绯荤粺渚挎槸閫氳繃璇ey鏉ヨ鍐欑紦瀛?   */
   public static String keyToHashKey(String key) {
     String cacheKey;
     try {
@@ -839,7 +800,7 @@ public class CommonUtil {
   }
 
   /**
-   * 将普通字符串转换为16位进制字符串
+   * 灏嗘櫘閫氬瓧绗︿覆杞崲涓?6浣嶈繘鍒跺瓧绗︿覆
    */
   public static String bytesToHexString(byte[] src) {
     StringBuilder stringBuilder = new StringBuilder("0x");
@@ -856,31 +817,26 @@ public class CommonUtil {
   }
 
   /**
-   * 获取对象名
-   *
-   * @param obj 对象
-   * @return 对象名
-   */
+   * 鑾峰彇瀵硅薄鍚?   *
+   * @param obj 瀵硅薄
+   * @return 瀵硅薄鍚?   */
   public static String getClassName(Object obj) {
     String[] arrays = obj.getClass().getName().split("\\.");
     return arrays[arrays.length - 1];
   }
 
   /**
-   * 获取对象名
-   *
+   * 鑾峰彇瀵硅薄鍚?   *
    * @param clazz clazz
-   * @return 对象名
-   */
+   * @return 瀵硅薄鍚?   */
   public static String getClassName(Class clazz) {
     String[] arrays = clazz.getName().split("\\.");
     return arrays[arrays.length - 1];
   }
 
   /**
-   * 格式化文件大小
-   *
-   * @param size file.length() 获取文件大小
+   * 鏍煎紡鍖栨枃浠跺ぇ灏?   *
+   * @param size file.length() 鑾峰彇鏂囦欢澶у皬
    */
   public static String formatFileSize(double size) {
     if (size < 0) {
@@ -913,14 +869,12 @@ public class CommonUtil {
   }
 
   /**
-   * 转换时间
-   * 时间＜1 小时，显示分秒，显示样式 00:20
-   * 时间 ≥1 小时，显示时分秒，显示样式 01:11:12
-   * 时间 ≥1 天，显示天时分，显示样式 1d 01:11
-   * 时间 ≥7 天，显示样式 ∞
-   *
-   * @param seconds 单位为s的时间
-   */
+   * 杞崲鏃堕棿
+   * 鏃堕棿锛? 灏忔椂锛屾樉绀哄垎绉掞紝鏄剧ず鏍峰紡 00:20
+   * 鏃堕棿 鈮? 灏忔椂锛屾樉绀烘椂鍒嗙锛屾樉绀烘牱寮?01:11:12
+   * 鏃堕棿 鈮? 澶╋紝鏄剧ず澶╂椂鍒嗭紝鏄剧ず鏍峰紡 1d 01:11
+   * 鏃堕棿 鈮? 澶╋紝鏄剧ず鏍峰紡 鈭?   *
+   * @param seconds 鍗曚綅涓簊鐨勬椂闂?   */
   public static String formatTime(int seconds) {
     String standardTime;
     if (seconds <= 0) {
@@ -946,10 +900,8 @@ public class CommonUtil {
   }
 
   /**
-   * 通过文件名获取下载配置文件路径
-   *
-   * @param fileName 文件名
-   */
+   * 閫氳繃鏂囦欢鍚嶈幏鍙栦笅杞介厤缃枃浠惰矾寰?   *
+   * @param fileName 鏂囦欢鍚?   */
   public static String getFileConfigPath(boolean isDownload, String fileName) {
     return AriaConfig.getInstance().getAPP().getFilesDir().getPath() + (isDownload
         ? AriaConfig.DOWNLOAD_TEMP_DIR
